@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreateUpvotesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,12 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            Schema::enableForeignKeyConstraints();
+        Schema::create('upvotes', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string('api_token')->unique();
-            $table->string('neighbourhood_id')->nullable();
-            $table->rememberToken();
+            $table->boolean('vote');
+            $table->integer('user_id')->unsigned();
+            $table->integer('reaction_id')->unsigned();
             $table->timestamps();
         });
     }
@@ -34,6 +30,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('upvotes');
     }
 }

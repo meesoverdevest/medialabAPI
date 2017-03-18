@@ -26,4 +26,19 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function votes()
+    {
+        return $this->hasMany(Vote::class);
+    }
+
+    public function reactions()
+    {
+        return $this->hasMany(Reaction::class);
+    }
+
+    public function neighbourhood()
+    {
+        return $this->belongsTo(Neighbourhood::class);
+    }    
 }

@@ -20,7 +20,7 @@ class RegisterController extends Controller
 	    $user->save();
 
   		return response()->json(
-  			['token' => str_random(60),
+  			['token' => $user->api_token,
   			'name' => $user->name,
   			'mail' => $user->email],
   			200

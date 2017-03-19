@@ -13,8 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::post('register', ['as' => 'api.register', 'uses' => 'API\RegisterController@register']);
-Route::post('login', ['as' => 'api.login', 'uses' => 'API\LoginController@login']);
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -25,3 +23,5 @@ Route::group(['middleware' => 'auth:api'], function() {
 
 });
 
+Route::post('register', ['as' => 'api.register', 'uses' => 'API\RegisterController@register']);
+Route::post('login', ['as' => 'api.login', 'uses' => 'API\LoginController@login']);

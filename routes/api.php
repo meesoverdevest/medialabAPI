@@ -19,3 +19,5 @@ Route::get('test', ['as' => 'api.test', 'uses' => 'API\RegisterController@test']
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware('auth:api')->get('protectedTest','API\RegisterController@protectedTest');

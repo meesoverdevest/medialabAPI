@@ -9,21 +9,31 @@ use App\User;
 class RegisterController extends Controller
 {
   	public function register(Request $request) {
-  		// User::create([
-	   //      'name' => $data['name'],
-	   //      'email' => $data['email'],
-	   //      'password' => bcrypt($data['password']),
-	   //      'api_token' => str_random(60),
-	   //  ]);
 
-  		$name = $request->get('name');
+			$user = User::create([
+	        'name' => $request->get('name'),
+	        'email' => $request->get('mail'),
+	        'password' => bcrypt($request->get('pass')),
+	    ]);
 
-  		return response()->json(compact('name'));
+	    $user->api_token = str_random(60);
+	    $user->save();
+
+  		return response()->json(
+  			['token' => str_random(60),
+  			'name' => $user->name,
+  			'mail' => $user->email],
+  			200
+			);
   	}
 
   	public function test(Request $request) {
   		$name = "adfsd";
 
   		return response()->json(['name' => $name], 200);
+  	}
+
+  	public function protectedTest() {
+  		return response()->json(['name' => 'authenticated'], 200);
   	}
 }

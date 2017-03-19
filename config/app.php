@@ -177,8 +177,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        Spatie\MediaLibrary\MediaLibraryServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Plank\Mediable\MediableServiceProvider::class,
 
     ],
 
@@ -231,6 +231,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'MediaUploader' => Plank\Mediable\MediaUploaderFacade::class,
 
     ],
 

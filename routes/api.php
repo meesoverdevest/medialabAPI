@@ -13,6 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::post('register', ['as' => 'api.register', 'uses' => 'API\RegisterController@register']);
+Route::get('test', ['as' => 'api.test', 'uses' => 'API\RegisterController@test']);
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });

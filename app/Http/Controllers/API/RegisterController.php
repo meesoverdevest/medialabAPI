@@ -27,12 +27,6 @@ class RegisterController extends Controller
 			);
   	}
 
-  	public function test(Request $request) {
-  		$name = "adfsd";
-
-  		return response()->json(['name' => $name], 200);
-  	}
-
   	public function protectedTest() {
   		return response()->json(['name' => 'authenticated'], 200);
   	}

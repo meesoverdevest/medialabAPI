@@ -9,7 +9,7 @@ class Adjustment extends Model
   protected $table = "adjustments";
 
   protected $fillable = [
-      'title', 'description', 'google_id', 'lat', 'lon'
+      'title', 'description', 'google_id', 'lat', 'lon', 'neighbourhood_id'
   ];
 
   public function reactions()

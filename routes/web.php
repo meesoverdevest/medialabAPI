@@ -14,12 +14,20 @@
 Auth::routes();
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.app');
 });
 
 
 
 Route::group(['middleware' => 'auth'], function() {
 	Route::get('/authtest', function() { return 'aasdfsdf';});
+
+
+
+	Route::group(['middleware' => 'isAdmin', 'prefix' => 'admin', 'namespace' => 'Admin'], function() {
+		Route::resource('adjustments','AdjustmentsController');
+		Route::get('adjustments/addMarker/{id}',['as' => 'adjustments.addMarker', 'uses' => 'AdjustmentsController@addMarker']);
+		Route::post('adjustments/addMarkerPost/{id}',['as' => 'adjustments.addMarkerPost', 'uses' => 'AdjustmentsController@addMarkerPost']);
+	});
 });
 

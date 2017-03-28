@@ -25,7 +25,7 @@ Route::group(['middleware' => 'auth'], function() {
 
 
 	Route::group(['middleware' => 'isAdmin', 'prefix' => 'admin', 'namespace' => 'Admin'], function() {
-		Route::resource('adjustments','AdjustmentsController');
+		Route::resource('adjustments','AdjustmentsController',['as' => 'admin']);
 		Route::get('adjustments/addMarker/{id}',['as' => 'adjustments.addMarker', 'uses' => 'AdjustmentsController@addMarker']);
 		Route::post('adjustments/addMarkerPost/{id}',['as' => 'adjustments.addMarkerPost', 'uses' => 'AdjustmentsController@addMarkerPost']);
 	});

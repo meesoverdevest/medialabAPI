@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Neighbourhood::class);
     }    
+
+    public function isAdmin()
+    {   
+        return env('ADMIN_MAIL') == auth()->user()->email;
+    }
 }

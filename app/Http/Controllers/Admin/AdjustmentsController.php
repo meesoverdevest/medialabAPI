@@ -24,7 +24,7 @@ class AdjustmentsController extends Controller
   public function show($id)
   {
   	$adjustment = Adjustment::findOrFail($id);
-  	return view('adjustment.show', compact('adjustment'));
+  	return view('adjustments.show', compact('adjustment'));
   }
 
   public function store(Request $request)

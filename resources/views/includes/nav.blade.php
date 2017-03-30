@@ -24,7 +24,8 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
-                        @if(auth()->user()->isAdmin())
+                        @if(Auth::check())
+                            @if(auth()->user()->isAdmin())
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     Wijzigingen <span class="caret"></span>
@@ -35,6 +36,7 @@
                                     <li><a href="{{ route('admin.adjustments.create') }}">Nieuwe wijziging</a></li>
                                 </ul>
                             </li>
+                            @endif
                         @endif
                         
                         <!-- Authentication Links -->

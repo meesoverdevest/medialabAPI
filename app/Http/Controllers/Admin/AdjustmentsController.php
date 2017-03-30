@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Adjustment;
 use App\Neighbourhood;
+use App\Helpers\QRGenerator;
 
 class AdjustmentsController extends Controller
 {
@@ -35,7 +36,12 @@ class AdjustmentsController extends Controller
   	$adjustment->neighbourhood_id = $request->get('neighbourhood');
   	$adjustment->save();
 
-  	return redirect()->route('adjustments.addMarker', $adjustment->id)->with('Success', 'De wijziging is succesvol toegevoegd');
+    $qr = new QRGenerator($adjustment);
+    if($qr->generateQR() == false) {
+      return redirect()->back()->with('Error', 'QR could not be created');
+    }
+
+  	return redirect()->route('admin.adjustments.addMarker', $adjustment->id)->with('Success', 'De wijziging is succesvol toegevoegd');
   }
 
   public function addMarker($id)
@@ -48,9 +54,11 @@ class AdjustmentsController extends Controller
   {
   	$adjustment = Adjustment::findOrFail($id);
   	$adjustment->google_id = $request->get('places_id');
+    $adjustment->lat = $request->get('lat');
+    $adjustment->lon = $request->get('lon');
   	$adjustment->save();
 
-  	return redirect()->route('adjustments.index')->with('Success', 'Een locatie is toegevoegd aan wijziging: ' . $adjustment->title);
+  	return redirect()->route('admin.adjustments.index')->with('Success', 'Een locatie is toegevoegd aan wijziging: ' . $adjustment->title);
   }
 
   public function update(Request $request, $id)

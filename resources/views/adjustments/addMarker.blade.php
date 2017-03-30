@@ -9,7 +9,7 @@
         <h1>Selecteer de Google locatie van de wijziging</h1>
         <p>Hieronder staat de huidige locatie van de wijziging afgebeeld. Als er nog geen locatie gekozen was voor de wijziging, kunt u het adres invoeren in de zoekbalk.</p>
 
-        {!! Form::open(['method' => 'POST','route' => ['adjustments.addMarkerPost', $adjustment->id]]) !!}
+        {!! Form::open(['method' => 'POST','route' => ['admin.adjustments.addMarkerPost', $adjustment->id]]) !!}
 
 
 
@@ -19,6 +19,8 @@
 
 
     {!! Form::hidden('places_id', '', ['class' => 'form-control', 'id' => 'places_id']) !!}
+    {!! Form::hidden('lat', '', ['class' => 'form-control', 'id' => 'lat']) !!}
+    {!! Form::hidden('lon', '', ['class' => 'form-control', 'id' => 'lon']) !!}
 
 
 
@@ -35,7 +37,7 @@
 @section('javascript')
     {{--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>--}}
     <script>var places_id = "{{ $adjustment->places_id  }}";</script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUuDraog3XH4qgNuKpBI3OQLotTSPsk50&libraries=places&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_API')}}&libraries=places&callback=initMap" async defer></script>
     <script>
         function initMap() {
             var map = new google.maps.Map(document.getElementById('map-canvas'));
@@ -111,7 +113,14 @@
                     map.setZoom(13);
                 }
 
+                var lat = place.geometry.location.lat();
+                var lon = place.geometry.location.lng();
+
                 document.getElementById('places_id').value = place.place_id;
+                document.getElementById('lat').value = "";
+                document.getElementById('lat').value = lat;
+                document.getElementById('lon').value = "";
+                document.getElementById('lon').value = lon;
 
                 // Set the position of the marker using the place ID and location.
                 marker.setPlace({

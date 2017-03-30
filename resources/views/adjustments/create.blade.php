@@ -8,7 +8,7 @@
         <hr/>
 
 
-        {!! Form::open(['route' => 'adjustments.store']) !!}
+        {!! Form::open(['route' => 'admin.adjustments.store']) !!}
 	        <div class="form-group">
 					    {!! Form::label('title', 'Titel') !!}
 					    {!! Form::text('title', null, ['class' => 'form-control']) !!}

@@ -8,7 +8,7 @@
         <hr/>
 
 
-        {!! Form::model($adjustment, ['method' => 'PATCH','route' => 'adjustments.update']) !!}
+        {!! Form::model($adjustment, ['method' => 'PATCH','route' => 'admin.adjustments.update']) !!}
         @include('adjustments._form', ['submitButtonText'=> 'Wijziging opslaan' ])
         {!! Form::close() !!}
 

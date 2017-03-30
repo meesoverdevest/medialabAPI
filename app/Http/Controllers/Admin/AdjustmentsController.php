@@ -61,9 +61,21 @@ class AdjustmentsController extends Controller
   	return redirect()->route('admin.adjustments.index')->with('Success', 'Een locatie is toegevoegd aan wijziging: ' . $adjustment->title);
   }
 
+  public function edit($id)
+  {
+    $adjustment = Adjustment::findOrFail($id);
+    return view('adjustments.edit', compact('adjustment'));
+  }
+
   public function update(Request $request, $id)
   {
+    $adjustment = new Adjustment();
+    $adjustment->title = $request->get('title');
+    $adjustment->description = $request->get('description');
+    $adjustment->neighbourhood_id = $request->get('neighbourhood');
+    $adjustment->save();
 
+    return redirect()->route('admin.adjustments.index', $adjustment->id)->with('Info', 'De wijziging is succesvol aangepast');
   }
 
   public function destroy(Request $request)

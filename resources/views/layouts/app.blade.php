@@ -23,6 +23,7 @@
 <body>
     <div id="app">
         @include('includes.nav')
+        @include('includes.alerts')
 
         @yield('content')
     </div>

@@ -4,12 +4,11 @@
   <div class="container">
 
 
-    <h1>Wijziging {{ $adjustment->title }}</h1>
+    <h1>Wijk {{ $hood->title }}</h1>
     <hr/>
 
     <div class="col-md-12">
-    	<p>{{ $adjustment->description }}</p>
-    	{{ $adjustment->reactions->first() }}
+    	<p>{{ $hood->description }}</p>
 
     </div>
 

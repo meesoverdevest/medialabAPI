@@ -28,6 +28,16 @@
                             @if(auth()->user()->isAdmin())
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    Wijken <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ route('admin.neighbourhoods.index') }}">Alle wijken</a></li>
+                                    <li><a href="{{ route('admin.neighbourhoods.create') }}">Nieuwe wijk</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     Wijzigingen <span class="caret"></span>
                                 </a>
 

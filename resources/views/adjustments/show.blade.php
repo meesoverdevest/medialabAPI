@@ -9,7 +9,12 @@
 
     <div class="col-md-12">
     	<p>{{ $adjustment->description }}</p>
-    	{{ $adjustment->reactions->first() }}
+    	@foreach($adjustment->reactions as $reaction)
+
+    		Reactie: {{ $reaction->description }}<br/>
+    		Door gebruiker: {{ $reaction->user->name }}
+    	@endforeach
+    	
 
     </div>
 

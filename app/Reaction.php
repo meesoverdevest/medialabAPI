@@ -18,16 +18,16 @@ class Reaction extends Model
 
   public function reaction()
   {
-  	$this->hasMany(Reaction::class, 'adjustment_reaction', 'adjustment_id', 'reaction_id');
+  	return $this->hasMany(Reaction::class, 'adjustment_reaction', 'adjustment_id', 'reaction_id');
   }
 
   public function user()
   {
-  	$this->belongsTo(User::class);
+  	return $this->belongsTo(User::class);
   }
 
   public function votes()
   {
-  	$this->hasMany(Vote::class);
+  	return $this->hasMany(Vote::class);
   }
 }

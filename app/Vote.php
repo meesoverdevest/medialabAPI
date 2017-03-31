@@ -19,12 +19,12 @@ class Vote extends Model
 
   public function reaction()
   {
-  	$this->belongsTo(Reaction::class, 'reaction_id');
+  	return $this->belongsTo(Reaction::class, 'reaction_id');
   }
 
   public function user()
   {
-  	$this->belongsTo(User::class, 'user_id');
+  	return $this->belongsTo(User::class, 'user_id');
   }
 
 }

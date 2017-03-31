@@ -9,16 +9,17 @@ class Adjustment extends Model
   protected $table = "adjustments";
 
   protected $fillable = [
-      'title', 'description', 'google_id', 'lat', 'lon', 'neighbourhood_id'
+      'title', 'description', 'google_id', 
+      'lat', 'lon', 'neighbourhood_id'
   ];
 
   public function reactions()
   {
-  	$this->hasMany(Reaction::class, 'adjustment_reaction', 'adjustment_id', 'reaction_id');
+  	return $this->belongsToMany(Reaction::class, 'adjustment_reaction', 'adjustment_id', 'reaction_id');
   }
 
   public function neighbourhood()
   {
-  	$this->belongsTo(Neighbourhood::class);
+  	return $this->belongsTo(Neighbourhood::class);
   }
 }

@@ -61,6 +61,23 @@ class AdjustmentsController extends Controller
   	return redirect()->route('admin.adjustments.index')->with('Success', 'Een locatie is toegevoegd aan wijziging: ' . $adjustment->title);
   }
 
+  public function updateMarker($id)
+  {
+    $adjustment = Adjustment::findOrFail($id);
+    return view('adjustments.updateMarker', compact('adjustment'));
+  }
+
+  public function updateMarkerPost(Request $request, $id)
+  {
+    $adjustment = Adjustment::findOrFail($id);
+    $adjustment->google_id = $request->get('places_id');
+    $adjustment->lat = $request->get('lat');
+    $adjustment->lon = $request->get('lon');
+    $adjustment->save();
+
+    return redirect()->route('admin.adjustments.index')->with('Success', 'De locatie van wijziging: ' . $adjustment->title . ' is succesvol geüpdatet!');
+  }
+
   public function edit($id)
   {
     $adjustment = Adjustment::findOrFail($id);

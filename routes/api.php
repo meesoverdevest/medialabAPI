@@ -20,10 +20,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => 'auth:api'], function() {
 	Route::get('protectedTest','API\RegisterController@protectedTest');
+	Route::resource('adjustments', 'API\AdjustmentsController', ['as' => 'api']);
+	Route::resource('reactions', 'API\ReactionController', ['as' => 'api']);
 
 });
 
-Route::resource('adjustments', 'API\AdjustmentsController', ['as' => 'api']);
 
 Route::post('register', ['as' => 'api.register', 'uses' => 'API\RegisterController@register']);
 Route::post('login', ['as' => 'api.login', 'uses' => 'API\LoginController@login']);

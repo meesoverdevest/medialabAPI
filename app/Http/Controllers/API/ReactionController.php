@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Reaction;
+use App\Adjustment;
 
 class ReactionController extends Controller
 {
@@ -36,7 +37,15 @@ class ReactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $reaction = new Reaction();
+        $reaction->description = $request->get('reaction');
+        $reaction->user_id = auth()->user()->id;
+        $reaction->save();
+
+        $adjustment = Adjustment::findOrFail($request->get('adjustment'));
+        $adjustment->reactions()->attach($reaction->id);
+
+        return response()->json(['success' => 'Reaction added successfully!'], 200);
     }
 
     /**

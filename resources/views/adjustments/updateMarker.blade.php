@@ -6,10 +6,10 @@
     {{--http://stackoverflow.com/questions/5072059/polygon-drawing-and-getting-coordinates-with-google-map-api-v3--}}
     <div class="container">
 
-        <h1>Selecteer de Google locatie van de wijziging</h1>
+        <h1>Het updaten van de locatie</h1>
         <p>Hieronder staat de huidige locatie van de wijziging afgebeeld. Als er nog geen locatie gekozen was voor de wijziging, kunt u het adres invoeren in de zoekbalk.</p>
 
-        {!! Form::open(['method' => 'POST','route' => ['admin.adjustments.addMarkerPost', $adjustment->id]]) !!}
+        {!! Form::open(['method' => 'POST','route' => ['admin.adjustments.updateMarkerPost', $adjustment->id]]) !!}
 
 
 
@@ -54,7 +54,6 @@
             var infowindow = new google.maps.InfoWindow();
             var service = new google.maps.places.PlacesService(map);
             var marker;
-
             if(this.places_id){
                 service.getDetails({
                     placeId: this.places_id

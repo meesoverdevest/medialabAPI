@@ -23,7 +23,7 @@ class QRGenerator {
 	    ->setErrorCorrection('high')
 	    ->setForegroundColor(['r' => 0, 'g' => 0, 'b' => 0, 'a' => 0])
 	    ->setBackgroundColor(['r' => 255, 'g' => 255, 'b' => 255, 'a' => 0])
-	    ->setLabel('Scan the code')
+	    ->setLabel('Scan om de wijziging te openen')
 	    ->setLabelFontSize(16)
 	    ->setImageType(QrCode::IMAGE_TYPE_PNG);
 
@@ -32,5 +32,15 @@ class QRGenerator {
     } else {
     	return false;
     }
+	}
+
+	public static function getQRPath($adjustmentId) {
+		$path = public_path() . "/qrcodes/" . $adjustmentId . '.png';
+
+		if(file_exists($path)){
+			return $path;
+		}
+
+		return null;
 	}
 }

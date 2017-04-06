@@ -28,7 +28,9 @@ Route::group(['middleware' => 'auth'], function() {
 		// Adjustments
 		Route::resource('adjustments','AdjustmentsController',['as' => 'admin']);
 		Route::get('adjustments/addMarker/{id}',['as' => 'admin.adjustments.addMarker', 'uses' => 'AdjustmentsController@addMarker']);
+		Route::get('adjustments/updateMarker/{id}',['as' => 'admin.adjustments.updateMarker', 'uses' => 'AdjustmentsController@updateMarker']);
 		Route::post('adjustments/addMarkerPost/{id}',['as' => 'admin.adjustments.addMarkerPost', 'uses' => 'AdjustmentsController@addMarkerPost']);
+		Route::post('adjustments/updateMarkerPost/{id}',['as' => 'admin.adjustments.updateMarkerPost', 'uses' => 'AdjustmentsController@updateMarkerPost']);
 
 		// Neighbourhoods
 		Route::resource('neighbourhoods','NeighbourhoodController',['as' => 'admin']);

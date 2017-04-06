@@ -16,7 +16,19 @@ class ReactionController extends Controller
      */
     public function index()
     {
-        //
+        $adjustments = Adjustment::take(10)->get();
+
+        $return = [];
+
+        foreach($adjustments as $adjustment) {
+            $return[$adjustment->id] = [];
+
+            foreach ($adjustment->reactions as $reaction) {
+                $return[$adjustment->id][] = $reaction;
+            }
+        }
+
+        return response()->json($return, 200);
     }
 
     /**

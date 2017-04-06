@@ -22,3 +22,20 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Adjustment::class, function (Faker\Generator $faker) {
+    return [
+        'neighbourhood_id' => 1,
+        'title' => $faker->unique()->safeEmail,
+        'description' => $faker->sentence(5),
+        'google_id' => "Ei1LYXN0YW5qZXNpbmdlbCAxMDEsIDMwNTMgUm90dGVyZGFtLCBOZWRlcmxhbmQ",
+    ];
+});
+
+$factory->define(App\Reaction::class, function (Faker\Generator $faker) {
+    return [
+        'description' => $faker->sentence(2),
+        'user_id' => 1,
+    ];
+});
+

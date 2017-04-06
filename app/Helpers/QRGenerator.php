@@ -27,6 +27,8 @@ class QRGenerator {
 	    ->setLabelFontSize(16)
 	    ->setImageType(QrCode::IMAGE_TYPE_PNG);
 
+	    // Functie toevoegen die QR op template maakt als een afbeelding
+
     if($qrCode->save($this->targetdir . $this->adjustment->id . '.png')) {
     	return true;
     } else {

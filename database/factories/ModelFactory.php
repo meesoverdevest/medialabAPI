@@ -26,7 +26,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 $factory->define(App\Adjustment::class, function (Faker\Generator $faker) {
     return [
         'neighbourhood_id' => 1,
-        'title' => $faker->unique()->safeEmail,
+        'title' => $faker->city,
         'description' => $faker->sentence(5),
         'google_id' => "Ei1LYXN0YW5qZXNpbmdlbCAxMDEsIDMwNTMgUm90dGVyZGFtLCBOZWRlcmxhbmQ",
     ];

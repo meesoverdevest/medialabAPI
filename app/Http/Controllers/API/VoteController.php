@@ -62,7 +62,7 @@ class VoteController extends Controller
         $vote->reaction_id = $request->get('reaction');
         $vote->save();
 
-        return response()->json($reaction, 200);
+        return response()->json($vote, 200);
     }
 
     /**

@@ -39,3 +39,13 @@ $factory->define(App\Reaction::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\Vote::class, function (Faker\Generator $faker) {
+    $reaction = App\Reaction::take(1)->get();
+    $user = App\User::take(1)->get();
+    return [
+        'vote' => $faker->boolean(),
+        'reaction_id' => $reaction[0]->id,
+        'user_id' => $user[0]->id,
+    ];
+});
+

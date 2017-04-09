@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Vote;
+use App\Reaction;
 
 class VoteController extends Controller
 {
@@ -15,7 +16,19 @@ class VoteController extends Controller
      */
     public function index()
     {
-        //
+        $reactions = Reaction::all();
+
+        $return = [];
+
+        foreach($reactions as $reaction) {
+            $return[$reaction->id] = [];
+
+            foreach ($reaction->votes as $vote) {
+                $return[$reaction->id][] = $vote;
+            }
+        }
+
+        return response()->json($return, 200);
     }
 
     /**
@@ -36,7 +49,13 @@ class VoteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $vote = new Vote();
+        $vote->vote = $request->get('vote');
+        $vote->user_id = auth()->user()->id;
+        $vote->reaction_id = $request->get('reaction');
+        $vote->save();
+
+        return response()->json($reaction, 200);
     }
 
     /**
@@ -47,7 +66,9 @@ class VoteController extends Controller
      */
     public function show($id)
     {
-        //
+        $reaction = Reaction::with('votes')->findOrFail($id);
+
+        return response()->json($reaction, 200);
     }
 
     /**

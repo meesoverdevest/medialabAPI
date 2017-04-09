@@ -9,7 +9,7 @@ use App\Adjustment;
 class AdjustmentsController extends Controller
 {
     public function index(){
-    	$adjustments = Adjustment::take(10)->get();
+    	$adjustments = Adjustment::all();
 
     	return response()->json($adjustments, 200);
     }

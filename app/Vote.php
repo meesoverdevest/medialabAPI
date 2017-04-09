@@ -9,12 +9,9 @@ class Vote extends Model
   protected $table = "upvotes";
 
   protected $fillable = [
-      'vote'
-  ];
-
-  protected $hidden = [
-    'user_id',
-    'reaction_id',
+      'vote',
+      'user_id',
+      'reaction_id',
   ];
 
   public function reaction()

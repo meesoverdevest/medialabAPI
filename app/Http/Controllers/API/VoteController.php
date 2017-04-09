@@ -49,8 +49,15 @@ class VoteController extends Controller
      */
     public function store(Request $request)
     {
+        $answer = false;
+
+        if($request->get('vote') == "true"){
+            $answer = true;
+        }
+
+
         $vote = new Vote();
-        $vote->vote = $request->get('vote');
+        $vote->vote = $answer;
         $vote->user_id = auth()->user()->id;
         $vote->reaction_id = $request->get('reaction');
         $vote->save();

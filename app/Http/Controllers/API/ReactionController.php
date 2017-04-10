@@ -16,7 +16,7 @@ class ReactionController extends Controller
      */
     public function index()
     {
-        $adjustments = Adjustment::take(10)->get();
+        $adjustments = Adjustment::all();
 
         $return = [];
 

@@ -22,9 +22,11 @@ class ReactionController extends Controller
 
         foreach($adjustments as $adjustment) {
             $return[$adjustment->id] = [];
+            $return[$adjustment->id]['adjustment_id'] = $adjustment->id;
 
             foreach ($adjustment->reactions as $reaction) {
-                $return[$adjustment->id][] = $reaction;
+                $return[$adjustment->id]['data'][] = $reaction;
+
             }
         }
 

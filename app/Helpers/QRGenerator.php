@@ -17,7 +17,7 @@ class QRGenerator {
 		// URL = base . /api/adjustments/{id}
 		$qrCode = new QrCode();
 		$qrCode
-	    ->setText(url('/') . '/api/adjustments/' . $this->adjustment->id)
+	    ->setText('adjustment:' . $this->adjustment->id)
 	    ->setSize(300)
 	    ->setPadding(10)
 	    ->setErrorCorrection('high')
